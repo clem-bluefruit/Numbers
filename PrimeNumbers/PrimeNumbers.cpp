@@ -6,7 +6,6 @@ using namespace ::std;
 PrimeNumbers::PrimeNumbers()
 {
 	m_PrimeNumbers.clear();
-	//m_PrimeNumbers.push_back(2);
 }
 
 PrimeNumbers::~PrimeNumbers()
@@ -26,9 +25,9 @@ bool PrimeNumbers::IsPrimeNumber(const long& number)
 
 string PrimeNumbers::ShowPrimeSequence(const long& numberOfPrimes)
 {
+	stringstream outputStream;
 	if (numberOfPrimes > 0)
 		GenerateNumberOfPrimes(static_cast<int>(numberOfPrimes));
-	stringstream outputStream;
 	if (m_PrimeNumbers.size() > 0)
 	{
 		for (auto n : m_PrimeNumbers)
@@ -59,7 +58,6 @@ void PrimeNumbers::GeneratePrimesUpTo(const long&  number)
 		m_PrimeNumbers.push_back(2);
 	while (m_PrimeNumbers.back() <= number)
 		GenerateNumberOfPrimes(1);
-
 	if (m_PrimeNumbers.back() >= number)
 		m_PrimeNumbers.pop_back();
 }
