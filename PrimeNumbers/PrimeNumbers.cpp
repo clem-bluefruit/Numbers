@@ -6,6 +6,7 @@ using namespace ::std;
 PrimeNumbers::PrimeNumbers()
 {
 	m_PrimeNumbers.clear();
+	//m_PrimeNumbers.push_back(2);
 }
 
 PrimeNumbers::~PrimeNumbers()
@@ -23,22 +24,10 @@ bool PrimeNumbers::IsPrimeNumber(const long& number)
 	return true;
 }
 
-void PrimeNumbers::GeneratePrimeSeqeunce(const int numberOfPrimes)
-{
-	int sequenceFrom = (m_PrimeNumbers.size() > 0) ? m_PrimeNumbers.back() : 1;
-	int totalPrimeSize = (m_PrimeNumbers.size() + numberOfPrimes);
-	while (m_PrimeNumbers.size() < totalPrimeSize)
-	{
-		sequenceFrom++;
-		if (IsPrimeNumber(sequenceFrom))
-			m_PrimeNumbers.push_back(sequenceFrom);
-	}
-}
-
 string PrimeNumbers::ShowPrimeSequence(const long& numberOfPrimes)
 {
 	if (numberOfPrimes > 0)
-		GeneratePrimeSeqeunce(static_cast<int>(numberOfPrimes));
+		GenerateNumberOfPrimes(static_cast<int>(numberOfPrimes));
 	stringstream outputStream;
 	if (m_PrimeNumbers.size() > 0)
 	{
@@ -50,4 +39,27 @@ string PrimeNumbers::ShowPrimeSequence(const long& numberOfPrimes)
 		}
 	}
 	return outputStream.str();
+}
+
+void PrimeNumbers::GenerateNumberOfPrimes(const int numberOfPrimes)
+{
+	int sequenceFrom = (m_PrimeNumbers.size() > 0) ? m_PrimeNumbers.back() : 1;
+	int totalPrimeSize = (m_PrimeNumbers.size() + numberOfPrimes);
+	while (m_PrimeNumbers.size() < totalPrimeSize)
+	{
+		sequenceFrom++;
+		if (IsPrimeNumber(sequenceFrom))
+			m_PrimeNumbers.push_back(sequenceFrom);
+	}
+}
+
+void PrimeNumbers::GeneratePrimesUpTo(const long&  number)
+{
+	if (m_PrimeNumbers.size() < 1)
+		m_PrimeNumbers.push_back(2);
+	while (m_PrimeNumbers.back() <= number)
+		GenerateNumberOfPrimes(1);
+
+	if (m_PrimeNumbers.back() >= number)
+		m_PrimeNumbers.pop_back();
 }

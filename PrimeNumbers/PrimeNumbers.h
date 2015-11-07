@@ -10,11 +10,11 @@ public:
 	PrimeNumbers();
 	~PrimeNumbers();
 	bool IsPrimeNumber(const long& number);
-	unsigned int GetPrimeFactors(const long& number);
 	std::string ShowPrimeSequence(const long& numberOfPrimes = 0);
+	void GenerateNumberOfPrimes(const int numberOfPrimes);
+	void GeneratePrimesUpTo(const long& number);
 private:
 	std::vector<long> m_PrimeNumbers;
-	void GeneratePrimeSeqeunce(const int numberOfPrimes);
 };
 
 #endif
