@@ -26,7 +26,8 @@ bool PrimeNumbers::IsDivisibleBy(const u64 total, const long division)
 string PrimeNumbers::ShowPrimeSequence(const u64 numberOfPrimes)
 {
 	stringstream outputStream;
-	GenerateNumberOfPrimes(numberOfPrimes);
+	unsigned long totalNumberOfPrimes = (numberOfPrimes - m_PrimeNumbers.size());
+	GenerateNumberOfPrimes(totalNumberOfPrimes);
 	for (auto n : m_PrimeNumbers)
 	{
 		outputStream << n;
