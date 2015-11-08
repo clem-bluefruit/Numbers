@@ -3,6 +3,11 @@
 
 using namespace ::std;
 
+PrimeNumbers::PrimeNumbers()
+{
+	m_PrimeNumbers.push_back(m_smallestPrime);
+}
+
 bool PrimeNumbers::IsPrimeNumber(const u64 number)
 {
 	for (int i = m_smallestPrime; i < number; i++)
@@ -21,19 +26,13 @@ bool PrimeNumbers::IsDivisibleBy(const u64 total, const int division)
 string PrimeNumbers::ShowPrimeSequence(const u64 numberOfPrimes)
 {
 	stringstream outputStream;
-	if (numberOfPrimes > NULL)
+	GenerateNumberOfPrimes(numberOfPrimes);
+	for (auto n : m_PrimeNumbers)
 	{
-		GenerateNumberOfPrimes(numberOfPrimes);
-	}
-	if (m_PrimeNumbers.size() > NULL)
-	{
-		for (auto n : m_PrimeNumbers)
+		outputStream << n;
+		if (n != m_PrimeNumbers.back())
 		{
-			outputStream << n;
-			if (n != m_PrimeNumbers.back())
-			{
-				outputStream << ", ";
-			}
+			outputStream << ", ";
 		}
 	}
 	return outputStream.str();
@@ -52,9 +51,12 @@ string PrimeNumbers::OutputPrimeFactors(const u64 number)
 			{
 				if (factors.str().size() >= m_minimumNumber)
 				{
-					factors << " * ";
+					factors << " * " << n;
 				}
-				factors << n;
+				else
+				{
+					factors << n;
+				}
 				u64 newTotal = total - (total / n);
 				total -= (newTotal > m_minimumNumber) ? newTotal : total;
 				break;
@@ -66,9 +68,9 @@ string PrimeNumbers::OutputPrimeFactors(const u64 number)
 
 void PrimeNumbers::GenerateNumberOfPrimes(const u64 numberOfPrimes)
 {
-	u64 sequenceFrom = (m_PrimeNumbers.size() > NULL) ? m_PrimeNumbers.back() : m_minimumNumber;
+	u64 sequenceFrom = m_PrimeNumbers.back();
 	const unsigned long totalPrimeSize = (m_PrimeNumbers.size() + numberOfPrimes);
-	while (static_cast<long>(m_PrimeNumbers.size()) < totalPrimeSize)
+	while (m_PrimeNumbers.size() < totalPrimeSize)
 	{
 		sequenceFrom++;
 		if (IsPrimeNumber(sequenceFrom))
@@ -80,15 +82,11 @@ void PrimeNumbers::GenerateNumberOfPrimes(const u64 numberOfPrimes)
 
 void PrimeNumbers::GeneratePrimesUpTo(const u64  number)
 {
-	if (m_PrimeNumbers.size() < m_minimumNumber)
-	{
-		m_PrimeNumbers.push_back(m_smallestPrime);
-	}
 	while (m_PrimeNumbers.back() <= number)
 	{
 		GenerateNumberOfPrimes(m_minimumNumber);
 	}
-	if (m_PrimeNumbers.back() >= number)
+	if (m_PrimeNumbers.back() > number)
 	{
 		m_PrimeNumbers.pop_back();
 	}
