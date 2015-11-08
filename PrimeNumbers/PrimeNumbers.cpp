@@ -3,7 +3,7 @@
 
 using namespace ::std;
 
-bool PrimeNumbers::IsPrimeNumber(const u64& number)
+bool PrimeNumbers::IsPrimeNumber(const u64 number)
 {
 	for (int i = m_smallestPrime; i < number; i++)
 	{
@@ -13,12 +13,12 @@ bool PrimeNumbers::IsPrimeNumber(const u64& number)
 	return true;
 }
 
-bool PrimeNumbers::IsDivisibleBy(const u64& total, const int division)
+bool PrimeNumbers::IsDivisibleBy(const u64 total, const int division)
 {
 	return (total %division == NULL) ? true : false;
 }
 
-string PrimeNumbers::ShowPrimeSequence(const u64& numberOfPrimes)
+string PrimeNumbers::ShowPrimeSequence(const u64 numberOfPrimes)
 {
 	stringstream outputStream;
 	if (numberOfPrimes > NULL)
@@ -39,7 +39,7 @@ string PrimeNumbers::ShowPrimeSequence(const u64& numberOfPrimes)
 	return outputStream.str();
 }
 
-string PrimeNumbers::OutputPrimeFactors(const u64& number)
+string PrimeNumbers::OutputPrimeFactors(const u64 number)
 {
 	stringstream factors;
 	GeneratePrimesUpTo(number);
@@ -64,7 +64,7 @@ string PrimeNumbers::OutputPrimeFactors(const u64& number)
 	return factors.str();
 }
 
-void PrimeNumbers::GenerateNumberOfPrimes(const u64& numberOfPrimes)
+void PrimeNumbers::GenerateNumberOfPrimes(const u64 numberOfPrimes)
 {
 	u64 sequenceFrom = (m_PrimeNumbers.size() > NULL) ? m_PrimeNumbers.back() : m_minimumNumber;
 	const unsigned long totalPrimeSize = (m_PrimeNumbers.size() + numberOfPrimes);
@@ -78,7 +78,7 @@ void PrimeNumbers::GenerateNumberOfPrimes(const u64& numberOfPrimes)
 	}
 }
 
-void PrimeNumbers::GeneratePrimesUpTo(const u64&  number)
+void PrimeNumbers::GeneratePrimesUpTo(const u64  number)
 {
 	if (m_PrimeNumbers.size() < m_minimumNumber)
 	{
