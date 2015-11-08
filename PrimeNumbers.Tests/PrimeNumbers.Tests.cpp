@@ -56,23 +56,20 @@ TEST_F(TestPrimeNumbers, Returns_single_digit_prime_factors)
 {
 	int number = 2;
 	string factor = "2";
-	numbers.GeneratePrimesUpTo(number);
 	ASSERT_EQ(factor, numbers.OutputPrimeFactors(number)) << "Error: prime factor of 2 is 2!";
 
 	number = 3;
 	factor = "3";
-	numbers.GenerateNumberOfPrimes(number);
 	ASSERT_EQ(factor, numbers.OutputPrimeFactors(number)) << "Error: prime factor of 3 is 3!";
 
 	number = 5;
 	ASSERT_EQ("5", numbers.OutputPrimeFactors(number));
 }
 
-TEST_F(TestPrimeNumbers, Returns_2_digitprime_factor_sequence)
+TEST_F(TestPrimeNumbers, Returns_2_digit_prime_factor_sequence)
 {
 	string factorSequence = "2 * 2";
 	int number = 4;
-	numbers.GenerateNumberOfPrimes(number);
 	ASSERT_EQ(factorSequence, numbers.OutputPrimeFactors(number));
 
 	factorSequence = "3 * 3";
@@ -88,5 +85,12 @@ TEST_F(TestPrimeNumbers, Returns_3_or_more_digit_prime_factors)
 
 	factorSequence = "2 * 2 * 5 * 5";
 	number = 100;
+	ASSERT_EQ(factorSequence, numbers.OutputPrimeFactors(number));
+}
+
+TEST_F(TestPrimeNumbers, Prime_numbers_only_return_their_own_value)
+{
+	string factorSequence = "599";
+	int number = 599;
 	ASSERT_EQ(factorSequence, numbers.OutputPrimeFactors(number));
 }
