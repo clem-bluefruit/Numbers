@@ -51,3 +51,17 @@ TEST_F(TestPrimeNumbers, Generate_all_prime_numbers_up_to_a_specified_value)
 	numbers.GeneratePrimesUpTo(1000);
 	ASSERT_EQ(primeNumbersTo1000, numbers.ShowPrimeSequence());
 }
+
+TEST_F(TestPrimeNumbers, Returns_single_digit_prime_factors)
+{
+	string factor = "2";
+	numbers.GeneratePrimesUpTo(2);
+	ASSERT_EQ(factor, numbers.CalculatePrimeFactors(2)) << "Error: prime factor of 2 is 2!";
+
+	factor = "3";
+	numbers.GenerateNumberOfPrimes(3);
+	ASSERT_EQ(factor, numbers.CalculatePrimeFactors(3)) << "Error: prime factor of 3 is 3!";
+
+	ASSERT_EQ("4 is NOT a prime number", numbers.CalculatePrimeFactors(4));
+}
+
