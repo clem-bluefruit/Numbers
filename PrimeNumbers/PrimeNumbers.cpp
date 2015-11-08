@@ -3,7 +3,7 @@
 
 using namespace ::std;
 
-bool PrimeNumbers::IsPrimeNumber(const u128& number)
+bool PrimeNumbers::IsPrimeNumber(const u64& number)
 {
 	for (int i = m_smallestPrime; i < number; i++)
 	{
@@ -13,12 +13,12 @@ bool PrimeNumbers::IsPrimeNumber(const u128& number)
 	return true;
 }
 
-bool PrimeNumbers::IsDivisibleBy(const u128& total, const int division)
+bool PrimeNumbers::IsDivisibleBy(const u64& total, const int division)
 {
 	return (total %division == NULL) ? true : false;
 }
 
-string PrimeNumbers::ShowPrimeSequence(const u128& numberOfPrimes)
+string PrimeNumbers::ShowPrimeSequence(const u64& numberOfPrimes)
 {
 	stringstream outputStream;
 	if (numberOfPrimes > NULL)
@@ -39,11 +39,11 @@ string PrimeNumbers::ShowPrimeSequence(const u128& numberOfPrimes)
 	return outputStream.str();
 }
 
-string PrimeNumbers::OutputPrimeFactors(const u128& number)
+string PrimeNumbers::OutputPrimeFactors(const u64& number)
 {
 	stringstream factors;
 	GeneratePrimesUpTo(number);
-	u128 total = number;
+	u64 total = number;
 	while (total > static_cast<long>(m_minimumNumber))
 	{
 		for (auto n : m_PrimeNumbers)
@@ -55,7 +55,7 @@ string PrimeNumbers::OutputPrimeFactors(const u128& number)
 					factors << " * ";
 				}
 				factors << n;
-				u128 newTotal = total - (total / n);
+				u64 newTotal = total - (total / n);
 				total -= (newTotal > m_minimumNumber) ? newTotal : total;
 				break;
 			}
@@ -64,9 +64,9 @@ string PrimeNumbers::OutputPrimeFactors(const u128& number)
 	return factors.str();
 }
 
-void PrimeNumbers::GenerateNumberOfPrimes(const u128& numberOfPrimes)
+void PrimeNumbers::GenerateNumberOfPrimes(const u64& numberOfPrimes)
 {
-	u128 sequenceFrom = (m_PrimeNumbers.size() > NULL) ? m_PrimeNumbers.back() : m_minimumNumber;
+	u64 sequenceFrom = (m_PrimeNumbers.size() > NULL) ? m_PrimeNumbers.back() : m_minimumNumber;
 	const unsigned long totalPrimeSize = (m_PrimeNumbers.size() + numberOfPrimes);
 	while (static_cast<long>(m_PrimeNumbers.size()) < totalPrimeSize)
 	{
@@ -78,7 +78,7 @@ void PrimeNumbers::GenerateNumberOfPrimes(const u128& numberOfPrimes)
 	}
 }
 
-void PrimeNumbers::GeneratePrimesUpTo(const u128&  number)
+void PrimeNumbers::GeneratePrimesUpTo(const u64&  number)
 {
 	if (m_PrimeNumbers.size() < m_minimumNumber)
 	{
