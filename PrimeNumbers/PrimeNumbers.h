@@ -18,6 +18,7 @@ private:
 	std::vector<long> m_PrimeNumbers;
 	bool IsDivisibleBy(const long& total, const int division);
 	const unsigned long  m_minimumNumber = 1;
+	const unsigned int m_smallestPrime = 2;
 };
 
 #endif

@@ -92,7 +92,7 @@ void PrimeNumbers::GeneratePrimesUpTo(const long&  number)
 {
 	if (m_PrimeNumbers.size() < m_minimumNumber)
 	{
-		m_PrimeNumbers.push_back(2);
+		m_PrimeNumbers.push_back(m_smallestPrime);
 	}
 	while (m_PrimeNumbers.back() <= number)
 	{
