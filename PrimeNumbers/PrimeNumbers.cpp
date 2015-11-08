@@ -43,20 +43,17 @@ string PrimeNumbers::OutputPrimeFactors(const u64 number)
 	stringstream factors;
 	GeneratePrimesUpTo(number);
 	u64 total = number;
-	while (total > static_cast<long>(m_minimumNumber))
+	while (total > m_minimumNumber)
 	{
 		for (auto n : m_PrimeNumbers)
 		{
-			if ((n <= total) && (IsDivisibleBy(total, n)))
+			if (IsDivisibleBy(total, n))
 			{
-				if (factors.str().size() >= m_minimumNumber)
+				if (!factors.str().empty())
 				{
-					factors << " * " << n;
+					factors << " * ";
 				}
-				else
-				{
-					factors << n;
-				}
+				factors << n;
 				u64 newTotal = total - (total / n);
 				total -= (newTotal > m_minimumNumber) ? newTotal : total;
 				break;
