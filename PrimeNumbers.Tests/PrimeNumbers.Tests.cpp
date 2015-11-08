@@ -13,11 +13,12 @@ public:
 
 TEST_F(TestPrimeNumbers, Check_if_number_is_a_prime)
 {
-	ASSERT_TRUE(numbers.IsPrimeNumber(2))    << "Error: 2 IS a prime number";
-	ASSERT_TRUE(numbers.IsPrimeNumber(3))    << "Error: 3 IS a prime number";
-	ASSERT_FALSE(numbers.IsPrimeNumber(4))   << "Error: 4 is NOT a prime number";
-	ASSERT_FALSE(numbers.IsPrimeNumber(30))  << "Error: 30 is NOT a prime number";
-	ASSERT_TRUE(numbers.IsPrimeNumber(8011)) << "Error: 8011 IS a prime number";
+	ASSERT_TRUE(numbers.IsPrimeNumber(2))		<< "Error: 2 IS a prime number";
+	ASSERT_TRUE(numbers.IsPrimeNumber(3))		<< "Error: 3 IS a prime number";
+	ASSERT_FALSE(numbers.IsPrimeNumber(4))		<< "Error: 4 is NOT a prime number";
+	ASSERT_FALSE(numbers.IsPrimeNumber(30))		<< "Error: 30 is NOT a prime number";
+	ASSERT_TRUE(numbers.IsPrimeNumber(8011))	<< "Error: 8011 IS a prime number";
+	ASSERT_TRUE(numbers.IsPrimeNumber(1297573)) << "Error: 1297573  is a prime number";
 }
 
 TEST_F(TestPrimeNumbers, Generate_a_custom_length_sequence_of_prime_numbers)
@@ -52,45 +53,34 @@ TEST_F(TestPrimeNumbers, Generate_all_prime_numbers_up_to_a_specified_value)
 	ASSERT_EQ(primeNumbersTo1000, numbers.ShowPrimeSequence());
 }
 
-TEST_F(TestPrimeNumbers, Returns_single_digit_prime_factors)
+TEST_F(TestPrimeNumbers, Returns_single_digit_prime_numbers)
 {
-	int number = 2;
-	string factor = "2";
-	ASSERT_EQ(factor, numbers.OutputPrimeFactors(number)) << "Error: prime factor of 2 is 2!";
+	ASSERT_EQ("2", numbers.OutputPrimeFactors(2))	  << "Error: 2 is a prime number!";
 
-	number = 3;
-	factor = "3";
-	ASSERT_EQ(factor, numbers.OutputPrimeFactors(number)) << "Error: prime factor of 3 is 3!";
+	ASSERT_EQ("3", numbers.OutputPrimeFactors(3))	  << "Error: 3 is a prime number!";
 
-	number = 5;
-	ASSERT_EQ("5", numbers.OutputPrimeFactors(number));
+	ASSERT_EQ("5", numbers.OutputPrimeFactors(5))	  << "Error: 5 is a prime number!";
+
+	ASSERT_EQ("599", numbers.OutputPrimeFactors(599)) << "Error: 599 is a prime number!";
 }
 
 TEST_F(TestPrimeNumbers, Returns_2_digit_prime_factor_sequence)
 {
-	string factorSequence = "2 * 2";
-	int number = 4;
-	ASSERT_EQ(factorSequence, numbers.OutputPrimeFactors(number));
+	ASSERT_EQ("2 * 2", numbers.OutputPrimeFactors(4)) << "Error: prime sequence of 4 should be 2 * 2";
 
-	factorSequence = "3 * 3";
-	number = 9;
-	ASSERT_EQ(factorSequence, numbers.OutputPrimeFactors(number));
+	ASSERT_EQ("3 * 3", numbers.OutputPrimeFactors(9)) << "Error: prime sequence of 9 should be 3 * 3";
 }
 
 TEST_F(TestPrimeNumbers, Returns_3_or_more_digit_prime_factors)
 {
-	string factorSequence = "2 * 2 * 3";
-	int number = 12;
-	ASSERT_EQ(factorSequence, numbers.OutputPrimeFactors(number));
+	ASSERT_EQ("2 * 2 * 3", numbers.OutputPrimeFactors(12))				 << "Error: prime sequence for 12 should be 2 * 2 * 3";
 
-	factorSequence = "2 * 2 * 5 * 5";
-	number = 100;
-	ASSERT_EQ(factorSequence, numbers.OutputPrimeFactors(number));
-}
+	ASSERT_EQ("2 * 2 * 2 * 2", numbers.OutputPrimeFactors(16))			 << "Error: prime sequence for 16 should be 2 * 2 * 2 * 2";
 
-TEST_F(TestPrimeNumbers, Prime_numbers_only_return_their_own_value)
-{
-	string factorSequence = "599";
-	int number = 599;
-	ASSERT_EQ(factorSequence, numbers.OutputPrimeFactors(number));
+	ASSERT_EQ("2 * 2 * 5 * 5", numbers.OutputPrimeFactors(100))			 << "Error: prime sequence for 100 should be 2 * 2 * 5 * 5";
+
+	ASSERT_EQ("2 * 2 * 2 * 3 * 3 * 11", numbers.OutputPrimeFactors(792)) << "Error: prime sequence for 792 should be 2 * 2 * 2 * 3 * 3 * 11";
+
+	// Passes but takes 11mins to run!
+	//ASSERT_EQ("2 * 643 * 1009", numbers.OutputPrimeFactors(1297574))	 << "Error: prime sequence for 1297574 should be 2 * 643 * 1009";
 }

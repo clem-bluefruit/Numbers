@@ -16,10 +16,9 @@ public:
 	void GenerateNumberOfPrimes(const u64 numberOfPrimes);
 	void GeneratePrimesUpTo(const u64 number);
 private:
-	const unsigned long  m_minimumNumber = 1;
 	const unsigned int m_smallestPrime   = 2;
 	std::vector<const u64> m_PrimeNumbers;;
-	bool IsDivisibleBy(const u64 total, const int division);
+	bool IsDivisibleBy(const u64 total, const long division);
 };
 
 #endif

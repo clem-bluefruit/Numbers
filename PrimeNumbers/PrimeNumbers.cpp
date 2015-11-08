@@ -12,15 +12,15 @@ bool PrimeNumbers::IsPrimeNumber(const u64 number)
 {
 	for (int i = m_smallestPrime; i < number; i++)
 	{
-		if (number %i == NULL)
+		if (number %i == 0)
 			return false;
 	}
 	return true;
 }
 
-bool PrimeNumbers::IsDivisibleBy(const u64 total, const int division)
+bool PrimeNumbers::IsDivisibleBy(const u64 total, const long division)
 {
-	return (total %division == NULL) ? true : false;
+	return (total %division == 0) ? true : false;
 }
 
 string PrimeNumbers::ShowPrimeSequence(const u64 numberOfPrimes)
@@ -43,21 +43,20 @@ string PrimeNumbers::OutputPrimeFactors(const u64 number)
 	stringstream factors;
 	GeneratePrimesUpTo(number);
 	u64 total = number;
-	while (total > m_minimumNumber)
+	while (total > 1)
 	{
 		for (auto n : m_PrimeNumbers)
 		{
-			if (IsDivisibleBy(total, n))
-			{
-				if (!factors.str().empty())
-				{
-					factors << " * ";
-				}
-				factors << n;
-				u64 newTotal = total - (total / n);
-				total -= (newTotal > m_minimumNumber) ? newTotal : total;
-				break;
-			}
+			if (!IsDivisibleBy(total, n))
+				continue;
+
+			if (!factors.str().empty())
+				factors << " * ";
+
+			factors << n;
+			u64 newTotal = total - (total / n);
+			total -= (newTotal > 1) ? newTotal : total;
+			break;
 		}
 	}
 	return factors.str();
@@ -77,11 +76,11 @@ void PrimeNumbers::GenerateNumberOfPrimes(const u64 numberOfPrimes)
 	}
 }
 
-void PrimeNumbers::GeneratePrimesUpTo(const u64  number)
+void PrimeNumbers::GeneratePrimesUpTo(const u64 number)
 {
-	while (m_PrimeNumbers.back() <= number)
+	while (m_PrimeNumbers.back() < number)
 	{
-		GenerateNumberOfPrimes(m_minimumNumber);
+		GenerateNumberOfPrimes(1);
 	}
 	if (m_PrimeNumbers.back() > number)
 	{
