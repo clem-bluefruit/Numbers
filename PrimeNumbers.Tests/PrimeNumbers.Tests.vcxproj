@@ -11,13 +11,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{64ADB462-F4B5-4310-ADC4-927A216FAD01}</ProjectGuid>
+    <ProjectGuid>{CF89C3AA-69BE-4499-98F5-EE56DA3E95D8}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>PrimeNumbers</RootNamespace>
+    <RootNamespace>PrimeNumbersTests</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -34,11 +34,13 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="PrimeNumbers.props" />
+    <Import Project="..\PrimeNumbers\PrimeNumbers.props" />
+    <Import Project="..\gtest\gtest.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="PrimeNumbers.props" />
+    <Import Project="..\PrimeNumbers\PrimeNumbers.props" />
+    <Import Project="..\gtest\gtest.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -78,10 +80,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="PrimeNumbers.h" />
+    <ClCompile Include="PrimeNumbers.Tests.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PrimeNumbers.cpp" />
+    <ProjectReference Include="..\gtest\gtest.vcxproj">
+      <Project>{2079691c-06cd-4f16-b558-58c0edb9dc0f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\PrimeNumbers\PrimeNumbers.vcxproj">
+      <Project>{64adb462-f4b5-4310-adc4-927a216fad01}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
