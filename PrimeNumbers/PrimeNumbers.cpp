@@ -3,12 +3,6 @@
 
 using namespace ::std;
 
-
-PrimeNumbers::~PrimeNumbers()
-{
-	m_PrimeNumbers.clear();
-}
-
 bool PrimeNumbers::IsPrimeNumber(const u128& number)
 {
 	for (int i = m_smallestPrime; i < number; i++)
@@ -58,7 +52,7 @@ string PrimeNumbers::OutputPrimeFactors(const u128& number)
 			{
 				if (factors.str().size() >= m_minimumNumber)
 				{
-					factors << multiplier;
+					factors << " * ";
 				}
 				factors << n;
 				u128 newTotal = total - (total / n);

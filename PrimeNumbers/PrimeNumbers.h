@@ -9,7 +9,6 @@ typedef unsigned long long u128;
 class PrimeNumbers
 {
 public:
-	~PrimeNumbers();
 	bool IsPrimeNumber(const u128& number);
 	std::string ShowPrimeSequence(const u128& numberOfPrimes = 0);
 	std::string OutputPrimeFactors(const u128& number);
@@ -20,7 +19,6 @@ private:
 	bool IsDivisibleBy(const u128& total, const int division);
 	const unsigned long  m_minimumNumber = 1;
 	const unsigned int m_smallestPrime = 2;
-	const std::string multiplier = " * ";
 };
 
 #endif
