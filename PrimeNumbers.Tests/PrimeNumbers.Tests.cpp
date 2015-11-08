@@ -54,14 +54,28 @@ TEST_F(TestPrimeNumbers, Generate_all_prime_numbers_up_to_a_specified_value)
 
 TEST_F(TestPrimeNumbers, Returns_single_digit_prime_factors)
 {
+	int number = 2;
 	string factor = "2";
-	numbers.GeneratePrimesUpTo(2);
-	ASSERT_EQ(factor, numbers.CalculatePrimeFactors(2)) << "Error: prime factor of 2 is 2!";
+	numbers.GeneratePrimesUpTo(number);
+	ASSERT_EQ(factor, numbers.OutputPrimeFactors(number)) << "Error: prime factor of 2 is 2!";
 
+	number = 3;
 	factor = "3";
-	numbers.GenerateNumberOfPrimes(3);
-	ASSERT_EQ(factor, numbers.CalculatePrimeFactors(3)) << "Error: prime factor of 3 is 3!";
+	numbers.GenerateNumberOfPrimes(number);
+	ASSERT_EQ(factor, numbers.OutputPrimeFactors(number)) << "Error: prime factor of 3 is 3!";
 
-	ASSERT_EQ("4 is NOT a prime number", numbers.CalculatePrimeFactors(4));
+	number = 5;
+	ASSERT_EQ("5", numbers.OutputPrimeFactors(number));
 }
 
+TEST_F(TestPrimeNumbers, Returns_2_digitprime_factor_sequence)
+{
+	string factorSequence = "2 * 2";
+	int number = 4;
+	numbers.GenerateNumberOfPrimes(number);
+	ASSERT_EQ(factorSequence, numbers.OutputPrimeFactors(number));
+
+	factorSequence = "3 * 3";
+	number = 9;
+	ASSERT_EQ(factorSequence, numbers.OutputPrimeFactors(number));
+}

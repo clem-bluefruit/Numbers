@@ -11,13 +11,13 @@ public:
 	~PrimeNumbers();
 	bool IsPrimeNumber(const long& number);
 	std::string ShowPrimeSequence(const long& numberOfPrimes = 0);
-	std::string CalculatePrimeFactors(const long& number);
+	std::string OutputPrimeFactors(const long& number);
 	void GenerateNumberOfPrimes(const int numberOfPrimes);
 	void GeneratePrimesUpTo(const long& number);
 private:
 	std::vector<long> m_PrimeNumbers;
 	bool IsDivisibleBy(const long& total, const int division);
-	const unsigned long  minimumNumber = 1;
+	const unsigned long  m_minimumNumber = 1;
 };
 
 #endif

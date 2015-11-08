@@ -3,9 +3,9 @@
 
 using namespace ::std;
 
-PrimeNumbers::PrimeNumbers()
+PrimeNumbers::PrimeNumbers() :
+	m_PrimeNumbers(0)
 {
-	m_PrimeNumbers.clear();
 }
 
 PrimeNumbers::~PrimeNumbers()
@@ -47,31 +47,31 @@ string PrimeNumbers::ShowPrimeSequence(const long& numberOfPrimes)
 	return outputStream.str();
 }
 
-string PrimeNumbers::CalculatePrimeFactors(const long& number)
+string PrimeNumbers::OutputPrimeFactors(const long& number)
 {
-	if (!IsPrimeNumber(number))
-		return to_string(number) + " is NOT a prime number";
 	stringstream factors;
 	GeneratePrimesUpTo(number);
 	long total = number;
-	while (total > static_cast<long>(minimumNumber))
+	while (total > static_cast<long>(m_minimumNumber))
 	{
 		for (auto n : m_PrimeNumbers)
 		{
-			if ((n <= number) && (IsDivisibleBy(total, n)))
+			if ((n <= total) && (IsDivisibleBy(total, n)))
 			{
+				if (factors.str().size() >= m_minimumNumber)
+					factors << " * ";
 				factors << n;
-				total -= (total / n);
+				int newTotal = total - (total / n);
+				total -= (newTotal > m_minimumNumber) ? newTotal : total;
 			}
 		}
-		total = 0;
 	}
 	return factors.str();
 }
 
 void PrimeNumbers::GenerateNumberOfPrimes(const int numberOfPrimes)
 {
-	int sequenceFrom = (m_PrimeNumbers.size() > 0) ? m_PrimeNumbers.back() : minimumNumber;
+	int sequenceFrom = (m_PrimeNumbers.size() > 0) ? m_PrimeNumbers.back() : m_minimumNumber;
 	long totalPrimeSize = (m_PrimeNumbers.size() + numberOfPrimes);
 	while (static_cast<long>(m_PrimeNumbers.size()) < totalPrimeSize)
 	{
@@ -83,10 +83,10 @@ void PrimeNumbers::GenerateNumberOfPrimes(const int numberOfPrimes)
 
 void PrimeNumbers::GeneratePrimesUpTo(const long&  number)
 {
-	if (m_PrimeNumbers.size() < minimumNumber)
+	if (m_PrimeNumbers.size() < m_minimumNumber)
 		m_PrimeNumbers.push_back(2);
 	while (m_PrimeNumbers.back() <= number)
-		GenerateNumberOfPrimes(minimumNumber);
+		GenerateNumberOfPrimes(m_minimumNumber);
 	if (m_PrimeNumbers.back() >= number)
 		m_PrimeNumbers.pop_back();
 }
