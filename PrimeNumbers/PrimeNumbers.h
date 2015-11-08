@@ -12,7 +12,7 @@ public:
 	bool IsPrimeNumber(const long& number);
 	std::string ShowPrimeSequence(const long& numberOfPrimes = 0);
 	std::string OutputPrimeFactors(const long& number);
-	void GenerateNumberOfPrimes(const int numberOfPrimes);
+	void GenerateNumberOfPrimes(const long& numberOfPrimes);
 	void GeneratePrimesUpTo(const long& number);
 private:
 	std::vector<long> m_PrimeNumbers;

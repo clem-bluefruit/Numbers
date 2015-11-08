@@ -74,7 +74,7 @@ string PrimeNumbers::OutputPrimeFactors(const long& number)
 	return factors.str();
 }
 
-void PrimeNumbers::GenerateNumberOfPrimes(const int numberOfPrimes)
+void PrimeNumbers::GenerateNumberOfPrimes(const long& numberOfPrimes)
 {
 	int sequenceFrom = (m_PrimeNumbers.size() > 0) ? m_PrimeNumbers.back() : m_minimumNumber;
 	long totalPrimeSize = (m_PrimeNumbers.size() + numberOfPrimes);
