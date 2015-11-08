@@ -79,3 +79,14 @@ TEST_F(TestPrimeNumbers, Returns_2_digitprime_factor_sequence)
 	number = 9;
 	ASSERT_EQ(factorSequence, numbers.OutputPrimeFactors(number));
 }
+
+TEST_F(TestPrimeNumbers, Returns_3_or_more_digit_prime_factors)
+{
+	string factorSequence = "2 * 2 * 3";
+	int number = 12;
+	ASSERT_EQ(factorSequence, numbers.OutputPrimeFactors(number));
+
+	factorSequence = "2 * 2 * 5 * 5";
+	number = 100;
+	ASSERT_EQ(factorSequence, numbers.OutputPrimeFactors(number));
+}

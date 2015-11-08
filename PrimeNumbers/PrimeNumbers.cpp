@@ -63,6 +63,7 @@ string PrimeNumbers::OutputPrimeFactors(const long& number)
 				factors << n;
 				int newTotal = total - (total / n);
 				total -= (newTotal > m_minimumNumber) ? newTotal : total;
+				break;
 			}
 		}
 	}
