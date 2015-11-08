@@ -3,39 +3,35 @@
 
 using namespace ::std;
 
-PrimeNumbers::PrimeNumbers() :
-	m_PrimeNumbers(0)
-{
-}
 
 PrimeNumbers::~PrimeNumbers()
 {
 	m_PrimeNumbers.clear();
 }
 
-bool PrimeNumbers::IsPrimeNumber(const long& number)
+bool PrimeNumbers::IsPrimeNumber(const u128& number)
 {
-	for (int i = 2; i < number; i++)
+	for (int i = m_smallestPrime; i < number; i++)
 	{
-		if (number %i == 0)
+		if (number %i == NULL)
 			return false;
 	}
 	return true;
 }
 
-bool PrimeNumbers::IsDivisibleBy(const long& total, const int division)
+bool PrimeNumbers::IsDivisibleBy(const u128& total, const int division)
 {
-	return (total %division == 0) ? true : false;
+	return (total %division == NULL) ? true : false;
 }
 
-string PrimeNumbers::ShowPrimeSequence(const long& numberOfPrimes)
+string PrimeNumbers::ShowPrimeSequence(const u128& numberOfPrimes)
 {
 	stringstream outputStream;
-	if (numberOfPrimes > 0)
+	if (numberOfPrimes > NULL)
 	{
 		GenerateNumberOfPrimes(numberOfPrimes);
 	}
-	if (m_PrimeNumbers.size() > 0)
+	if (m_PrimeNumbers.size() > NULL)
 	{
 		for (auto n : m_PrimeNumbers)
 		{
@@ -49,11 +45,11 @@ string PrimeNumbers::ShowPrimeSequence(const long& numberOfPrimes)
 	return outputStream.str();
 }
 
-string PrimeNumbers::OutputPrimeFactors(const long& number)
+string PrimeNumbers::OutputPrimeFactors(const u128& number)
 {
 	stringstream factors;
 	GeneratePrimesUpTo(number);
-	long total = number;
+	u128 total = number;
 	while (total > static_cast<long>(m_minimumNumber))
 	{
 		for (auto n : m_PrimeNumbers)
@@ -62,10 +58,10 @@ string PrimeNumbers::OutputPrimeFactors(const long& number)
 			{
 				if (factors.str().size() >= m_minimumNumber)
 				{
-					factors << " * ";
+					factors << multiplier;
 				}
 				factors << n;
-				int newTotal = total - (total / n);
+				u128 newTotal = total - (total / n);
 				total -= (newTotal > m_minimumNumber) ? newTotal : total;
 				break;
 			}
@@ -74,10 +70,10 @@ string PrimeNumbers::OutputPrimeFactors(const long& number)
 	return factors.str();
 }
 
-void PrimeNumbers::GenerateNumberOfPrimes(const long& numberOfPrimes)
+void PrimeNumbers::GenerateNumberOfPrimes(const u128& numberOfPrimes)
 {
-	int sequenceFrom = (m_PrimeNumbers.size() > 0) ? m_PrimeNumbers.back() : m_minimumNumber;
-	long totalPrimeSize = (m_PrimeNumbers.size() + numberOfPrimes);
+	u128 sequenceFrom = (m_PrimeNumbers.size() > NULL) ? m_PrimeNumbers.back() : m_minimumNumber;
+	const unsigned long totalPrimeSize = (m_PrimeNumbers.size() + numberOfPrimes);
 	while (static_cast<long>(m_PrimeNumbers.size()) < totalPrimeSize)
 	{
 		sequenceFrom++;
@@ -88,7 +84,7 @@ void PrimeNumbers::GenerateNumberOfPrimes(const long& numberOfPrimes)
 	}
 }
 
-void PrimeNumbers::GeneratePrimesUpTo(const long&  number)
+void PrimeNumbers::GeneratePrimesUpTo(const u128&  number)
 {
 	if (m_PrimeNumbers.size() < m_minimumNumber)
 	{
