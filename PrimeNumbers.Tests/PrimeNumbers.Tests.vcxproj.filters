@@ -15,12 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PrimeNumbers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="PrimeNumbers.cpp">
+    <ClCompile Include="PrimeNumbers.Tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
