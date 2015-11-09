@@ -60,32 +60,31 @@ TEST_F(TestPrimeNumbers, Generate_all_prime_numbers_up_to_a_specified_value)
 
 TEST_F(TestPrimeNumbers, Returns_single_digit_prime_numbers)
 {
-	ASSERT_EQ("2", numbers.OutputPrimeFactors(2))	  << "Error: 2 is a prime number!";
+	ASSERT_EQ("2", numbers.Factorise(2)) << "Error: 2 is a prime number!";
 
-	ASSERT_EQ("3", numbers.OutputPrimeFactors(3))	  << "Error: 3 is a prime number!";
+	ASSERT_EQ("3", numbers.Factorise(3)) << "Error: 3 is a prime number!";
 
-	ASSERT_EQ("5", numbers.OutputPrimeFactors(5))	  << "Error: 5 is a prime number!";
+	ASSERT_EQ("5", numbers.Factorise(5)) << "Error: 5 is a prime number!";
 
-	ASSERT_EQ("599", numbers.OutputPrimeFactors(599)) << "Error: 599 is a prime number!";
+	ASSERT_EQ("599", numbers.Factorise(599)) << "Error: 599 is a prime number!";
 }
 
 TEST_F(TestPrimeNumbers, Returns_2_digit_prime_factor_sequence)
 {
-	ASSERT_EQ("2 * 2", numbers.OutputPrimeFactors(4)) << "Error: prime sequence of 4 should be 2 * 2";
+	ASSERT_EQ("2 * 2", numbers.Factorise(4)) << "Error: prime sequence of 4 should be 2 * 2";
 
-	ASSERT_EQ("3 * 3", numbers.OutputPrimeFactors(9)) << "Error: prime sequence of 9 should be 3 * 3";
+	ASSERT_EQ("3 * 3", numbers.Factorise(9)) << "Error: prime sequence of 9 should be 3 * 3";
 }
 
 TEST_F(TestPrimeNumbers, Returns_3_or_more_digit_prime_factors)
 {
-	ASSERT_EQ("2 * 2 * 3", numbers.OutputPrimeFactors(12))				 << "Error: prime sequence for 12 should be 2 * 2 * 3";
+	ASSERT_EQ("2 * 2 * 3", numbers.Factorise(12)) << "Error: prime sequence for 12 should be 2 * 2 * 3";
 
-	ASSERT_EQ("2 * 2 * 2 * 2", numbers.OutputPrimeFactors(16))			 << "Error: prime sequence for 16 should be 2 * 2 * 2 * 2";
+	ASSERT_EQ("2 * 2 * 2 * 2", numbers.Factorise(16)) << "Error: prime sequence for 16 should be 2 * 2 * 2 * 2";
 
-	ASSERT_EQ("2 * 2 * 5 * 5", numbers.OutputPrimeFactors(100))			 << "Error: prime sequence for 100 should be 2 * 2 * 5 * 5";
+	ASSERT_EQ("2 * 2 * 5 * 5", numbers.Factorise(100)) << "Error: prime sequence for 100 should be 2 * 2 * 5 * 5";
 
-	ASSERT_EQ("2 * 2 * 2 * 3 * 3 * 11", numbers.OutputPrimeFactors(792)) << "Error: prime sequence for 792 should be 2 * 2 * 2 * 3 * 3 * 11";
+	ASSERT_EQ("2 * 2 * 2 * 3 * 3 * 11", numbers.Factorise(792)) << "Error: prime sequence for 792 should be 2 * 2 * 2 * 3 * 3 * 11";
 
-	// Passes but takes 11mins to run!
-	//ASSERT_EQ("2 * 643 * 1009", numbers.OutputPrimeFactors(1297574))	 << "Error: prime sequence for 1297574 should be 2 * 643 * 1009";
+	ASSERT_EQ("2 * 643 * 1009", numbers.Factorise(1297574)) << "Error: prime sequence for 1297574 should be 2 * 643 * 1009";
 }

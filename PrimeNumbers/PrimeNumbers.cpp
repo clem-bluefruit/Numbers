@@ -10,7 +10,8 @@ PrimeNumbers::PrimeNumbers()
 
 bool PrimeNumbers::IsPrimeNumber(const u64 number)
 {
-	for (int i = m_smallestPrime; i < number; i++)
+	u64 largestPrime = sqrt(number);
+	for (u64 i = m_smallestPrime; i <= largestPrime; i++)
 	{
 		if (number %i == 0)
 			return false;
@@ -26,8 +27,11 @@ bool PrimeNumbers::IsDivisibleBy(const u64 total, const long division)
 string PrimeNumbers::ShowPrimeSequence(const u64 numberOfPrimes)
 {
 	stringstream outputStream;
-	unsigned long totalNumberOfPrimes = (numberOfPrimes - m_PrimeNumbers.size());
-	GenerateNumberOfPrimes(totalNumberOfPrimes);
+	if (numberOfPrimes > 0)
+	{
+		u64 totalNumberOfPrimes = (numberOfPrimes - m_PrimeNumbers.size());
+		GenerateNumberOfPrimes(totalNumberOfPrimes);
+	}
 	for (auto n : m_PrimeNumbers)
 	{
 		outputStream << n;
@@ -39,11 +43,12 @@ string PrimeNumbers::ShowPrimeSequence(const u64 numberOfPrimes)
 	return outputStream.str();
 }
 
-string PrimeNumbers::OutputPrimeFactors(const u64 number)
+string PrimeNumbers::Factorise(const u64 number)
 {
 	stringstream factors;
-	GeneratePrimesUpTo(number);
 	u64 total = number;
+	u64 maxPrime = (number >= 9) ? sqrt(total) : total;
+	GeneratePrimesUpTo(number);
 	while (total > 1)
 	{
 		for (auto n : m_PrimeNumbers)
@@ -63,16 +68,16 @@ string PrimeNumbers::OutputPrimeFactors(const u64 number)
 	return factors.str();
 }
 
-void PrimeNumbers::GenerateNumberOfPrimes(const u64 numberOfPrimes)
+void PrimeNumbers::GenerateNumberOfPrimes(u64 numberOfPrimes)
 {
 	u64 sequenceFrom = m_PrimeNumbers.back();
-	const unsigned long totalPrimeSize = (m_PrimeNumbers.size() + numberOfPrimes);
-	while (m_PrimeNumbers.size() < totalPrimeSize)
+	while (numberOfPrimes > 0)
 	{
 		sequenceFrom++;
 		if (IsPrimeNumber(sequenceFrom))
 		{
 			m_PrimeNumbers.push_back(sequenceFrom);
+			numberOfPrimes--;
 		}
 	}
 }
